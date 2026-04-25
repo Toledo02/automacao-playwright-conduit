@@ -1,0 +1,184 @@
+{
+  "meta": {
+    "id": "COMMON_CT_DATA_STRATEGY_V1",
+    "domain": "common",
+    "version": "1.0.0",
+    "lastUpdated": "2026-04-25",
+    "owner": "qa-automation"
+  },
+  "ctStrategy": [
+    {
+      "ctId": "CT001",
+      "module": "autenticacao",
+      "strategy": "dynamic",
+      "primaryDataFile": "test-data/auth/register-template.json",
+      "scenarioId": "AUTH_REGISTER_01",
+      "dynamicFields": [
+        "username",
+        "email"
+      ],
+      "reason": "Cadastro exige dados unicos por execucao"
+    },
+    {
+      "ctId": "CT002",
+      "module": "autenticacao",
+      "strategy": "fixed",
+      "primaryDataFile": "test-data/auth/login-valid.json",
+      "scenarioId": "AUTH_LOGIN_VALID_01",
+      "dynamicFields": [],
+      "reason": "Login feliz usa conta seed estavel"
+    },
+    {
+      "ctId": "CT003",
+      "module": "autenticacao",
+      "strategy": "fixed",
+      "primaryDataFile": "test-data/auth/login-invalid.json",
+      "scenarioId": "AUTH_LOGIN_INVALID_01",
+      "dynamicFields": [],
+      "reason": "Cenario negativo previsivel"
+    },
+    {
+      "ctId": "CT004",
+      "module": "autenticacao",
+      "strategy": "fixed",
+      "primaryDataFile": "test-data/auth/login-valid.json",
+      "scenarioId": "AUTH_LOGOUT_01",
+      "dynamicFields": [],
+      "reason": "Logout parte de usuario seed autenticado"
+    },
+    {
+      "ctId": "CT005",
+      "module": "feed-navegacao",
+      "strategy": "fixed",
+      "primaryDataFile": "test-data/article/feed-tags.json",
+      "scenarioId": "FEED_GLOBAL_01",
+      "dynamicFields": [],
+      "reason": "Apenas validacao de UI e listagem"
+    },
+    {
+      "ctId": "CT006",
+      "module": "feed-navegacao",
+      "strategy": "fixed",
+      "primaryDataFile": "test-data/auth/login-valid.json",
+      "scenarioId": "FEED_YOUR_FEED_01",
+      "dynamicFields": [],
+      "reason": "Dependencia principal e autenticacao"
+    },
+    {
+      "ctId": "CT007",
+      "module": "feed-navegacao",
+      "strategy": "fixed",
+      "primaryDataFile": "test-data/article/feed-tags.json",
+      "scenarioId": "FEED_TAG_FILTER_01",
+      "dynamicFields": [],
+      "reason": "Tag popular selecionada de lista controlada"
+    },
+    {
+      "ctId": "CT008",
+      "module": "feed-navegacao",
+      "strategy": "hybrid",
+      "primaryDataFile": "test-data/article/feed-tags.json",
+      "scenarioId": "FEED_OPEN_ARTICLE_01",
+      "dynamicFields": [
+        "articleSelectionMode"
+      ],
+      "reason": "Artigo pode variar; selecao e dinamica em runtime"
+    },
+    {
+      "ctId": "CT009",
+      "module": "article-crud",
+      "strategy": "dynamic",
+      "primaryDataFile": "test-data/article/article-create.json",
+      "scenarioId": "ARTICLE_CREATE_01",
+      "dynamicFields": [
+        "title",
+        "description",
+        "body"
+      ],
+      "reason": "Titulo e slug devem ser unicos"
+    },
+    {
+      "ctId": "CT010",
+      "module": "article-crud",
+      "strategy": "hybrid",
+      "primaryDataFile": "test-data/article/article-update.json",
+      "scenarioId": "ARTICLE_EDIT_01",
+      "dynamicFields": [
+        "targetArticleSlug",
+        "newTitle"
+      ],
+      "reason": "Usa artigo criado dinamicamente e payload de edicao controlado"
+    },
+    {
+      "ctId": "CT011",
+      "module": "article-crud",
+      "strategy": "hybrid",
+      "primaryDataFile": "test-data/article/article-update.json",
+      "scenarioId": "ARTICLE_DELETE_01",
+      "dynamicFields": [
+        "targetArticleSlug"
+      ],
+      "reason": "Alvo de exclusao vem de criacao dinamica"
+    },
+    {
+      "ctId": "CT012",
+      "module": "article-crud",
+      "strategy": "fixed",
+      "primaryDataFile": "test-data/article/article-validation.json",
+      "scenarioId": "ARTICLE_VALIDATION_01",
+      "dynamicFields": [],
+      "reason": "Validacao de campos obrigatorios"
+    },
+    {
+      "ctId": "CT013",
+      "module": "interacoes",
+      "strategy": "hybrid",
+      "primaryDataFile": "test-data/article/feed-tags.json",
+      "scenarioId": "FAVORITE_ADD_01",
+      "dynamicFields": [
+        "targetArticleFromFeed"
+      ],
+      "reason": "Alvo favorito pode variar no feed"
+    },
+    {
+      "ctId": "CT014",
+      "module": "interacoes",
+      "strategy": "hybrid",
+      "primaryDataFile": "test-data/article/feed-tags.json",
+      "scenarioId": "FAVORITE_REMOVE_01",
+      "dynamicFields": [
+        "targetArticleFromFeed"
+      ],
+      "reason": "Remove favorito do artigo selecionado em runtime"
+    },
+    {
+      "ctId": "CT015",
+      "module": "settings",
+      "strategy": "fixed",
+      "primaryDataFile": "test-data/settings/profile-update.json",
+      "scenarioId": "SETTINGS_PROFILE_01",
+      "dynamicFields": [],
+      "reason": "Atualizacao de campos com massa estavel"
+    },
+    {
+      "ctId": "CT016",
+      "module": "settings",
+      "strategy": "hybrid",
+      "primaryDataFile": "test-data/settings/password-update.json",
+      "scenarioId": "SETTINGS_PASSWORD_01",
+      "dynamicFields": [
+        "newPassword"
+      ],
+      "reason": "Senha pode receber sufixo dinamico para evitar reuse"
+    },
+    {
+      "ctId": "CT017",
+      "module": "settings",
+      "strategy": "fixed",
+      "primaryDataFile": "test-data/auth/login-valid.json",
+      "scenarioId": "SETTINGS_LOGOUT_01",
+      "dynamicFields": [],
+      "reason": "Cenario depende apenas de sessao autenticada"
+    }
+  ]
+}

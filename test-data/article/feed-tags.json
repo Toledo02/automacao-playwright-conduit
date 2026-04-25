@@ -1,0 +1,66 @@
+{
+  "meta": {
+    "id": "ARTICLE_FEED_TAGS_V1",
+    "domain": "article",
+    "version": "1.0.0",
+    "lastUpdated": "2026-04-25",
+    "owner": "qa-automation"
+  },
+  "scenarios": [
+    {
+      "id": "FEED_GLOBAL_01",
+      "ctId": "CT005",
+      "strategy": "fixed",
+      "description": "Validacao do Global Feed",
+      "payload": {
+        "openPath": "/",
+        "activeTab": "Global Feed"
+      }
+    },
+    {
+      "id": "FEED_TAG_FILTER_01",
+      "ctId": "CT007",
+      "strategy": "fixed",
+      "description": "Filtro por tag popular",
+      "payload": {
+        "preferredTags": [
+          "Test",
+          "Git",
+          "GitHub",
+          "YouTube"
+        ],
+        "fallbackMode": "firstAvailableTag"
+      }
+    },
+    {
+      "id": "FEED_OPEN_ARTICLE_01",
+      "ctId": "CT008",
+      "strategy": "hybrid",
+      "description": "Abrir detalhes de artigo a partir do feed",
+      "payload": {
+        "articleSelectionMode": "firstVisible",
+        "fallbackSlug": "discover-bondar-academy"
+      }
+    },
+    {
+      "id": "FAVORITE_ADD_01",
+      "ctId": "CT013",
+      "strategy": "hybrid",
+      "description": "Favoritar artigo do feed",
+      "payload": {
+        "targetArticleFromFeed": "firstNotFavorited",
+        "counterDelta": 1
+      }
+    },
+    {
+      "id": "FAVORITE_REMOVE_01",
+      "ctId": "CT014",
+      "strategy": "hybrid",
+      "description": "Remover favorito de artigo do feed",
+      "payload": {
+        "targetArticleFromFeed": "firstFavorited",
+        "counterDelta": -1
+      }
+    }
+  ]
+}

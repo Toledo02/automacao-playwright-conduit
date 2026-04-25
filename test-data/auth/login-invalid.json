@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "id": "AUTH_LOGIN_INVALID_V1",
+    "domain": "auth",
+    "version": "1.0.0",
+    "lastUpdated": "2026-04-25",
+    "owner": "qa-automation"
+  },
+  "scenarios": [
+    {
+      "id": "AUTH_LOGIN_INVALID_01",
+      "ctId": "CT003",
+      "strategy": "fixed",
+      "description": "Login com senha invalida",
+      "payload": {
+        "email": "qa.seed.user@example.com",
+        "password": "SenhaInvalida#2026"
+      },
+      "expected": {
+        "errorContains": "email or password is invalid"
+      }
+    },
+    {
+      "id": "AUTH_LOGIN_INVALID_02",
+      "ctId": "CT003",
+      "strategy": "fixed",
+      "description": "Login com email inexistente",
+      "payload": {
+        "email": "nao.existe.{{dateYMD}}@example.com",
+        "password": "Qualquer#123"
+      },
+      "expected": {
+        "errorContains": "email or password is invalid"
+      }
+    }
+  ]
+}

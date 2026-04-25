@@ -1,0 +1,29 @@
+{
+  "meta": {
+    "id": "AUTH_REGISTER_TEMPLATE_V1",
+    "domain": "auth",
+    "version": "1.0.0",
+    "lastUpdated": "2026-04-25",
+    "owner": "qa-automation"
+  },
+  "scenarios": [
+    {
+      "id": "AUTH_REGISTER_01",
+      "ctId": "CT001",
+      "strategy": "dynamic",
+      "description": "Cadastro com identidade unica por execucao",
+      "payload": {
+        "username": "qa_user_{{runId}}",
+        "email": "qa_user_{{runId}}@example.com",
+        "password": "QaDynamic#2026"
+      },
+      "expected": {
+        "redirectPath": "/",
+        "navbarShouldContain": [
+          "New Article",
+          "Settings"
+        ]
+      }
+    }
+  ]
+}

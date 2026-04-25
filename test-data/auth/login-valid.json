@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "id": "AUTH_LOGIN_VALID_V1",
+    "domain": "auth",
+    "version": "1.0.0",
+    "lastUpdated": "2026-04-25",
+    "owner": "qa-automation"
+  },
+  "scenarios": [
+    {
+      "id": "AUTH_LOGIN_VALID_01",
+      "ctId": "CT002",
+      "strategy": "fixed",
+      "description": "Login com usuario seed valido",
+      "payload": {
+        "email": "qa.seed.user@example.com",
+        "password": "QaSeed#2026"
+      },
+      "notes": "Conta deve existir previamente no ambiente alvo"
+    },
+    {
+      "id": "AUTH_LOGOUT_01",
+      "ctId": "CT004",
+      "strategy": "fixed",
+      "description": "Credenciais de sessao para fluxo de logout",
+      "payload": {
+        "email": "qa.seed.user@example.com",
+        "password": "QaSeed#2026"
+      }
+    },
+    {
+      "id": "FEED_YOUR_FEED_01",
+      "ctId": "CT006",
+      "strategy": "fixed",
+      "description": "Credenciais para validacao de Your Feed",
+      "payload": {
+        "email": "qa.seed.user@example.com",
+        "password": "QaSeed#2026"
+      }
+    },
+    {
+      "id": "SETTINGS_LOGOUT_01",
+      "ctId": "CT017",
+      "strategy": "fixed",
+      "description": "Credenciais para logout via Settings",
+      "payload": {
+        "email": "qa.seed.user@example.com",
+        "password": "QaSeed#2026"
+      }
+    }
+  ]
+}
