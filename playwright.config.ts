@@ -1,6 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 
-const baseURL = process.env.E2E_BASE_URL ?? 'https://conduit.bondaracademy.com';
+const baseURL = 'https://conduit.bondaracademy.com';
 
 /**
  * Read environment variables from file.

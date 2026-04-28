@@ -1,0 +1,10 @@
+{
+  "loginValido": {
+    "email": "qa.seed.user@example.com",
+    "password": "QaSeed#2026"
+  },
+  "loginInvalido": {
+    "email": "qa.seed.user@example.com",
+    "password": "WrongPassword#2026"
+  }
+}
