@@ -15,7 +15,7 @@ export class SettingsPage {
         await this.page.goto('/settings');
     }
 
-    async validateLoaded() {
+    async validateSettingsLoaded() {
         await expect(this.settingsHeading).toBeVisible();
     }
 

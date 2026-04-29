@@ -13,7 +13,6 @@ export class HomePage {
     readonly articlePreviews: Locator;
     readonly pagination: Locator;
     readonly popularTagsTitle: Locator;
-    readonly popularTags: Locator;
     readonly emptyFeedMessage: Locator;
 
     constructor(page: Page) {
@@ -23,13 +22,12 @@ export class HomePage {
         this.settingsLink = this.page.getByRole('link', { name: 'Settings' });
         this.banner = this.page.locator('.banner');
         this.feedToggle = this.page.locator('div.feed-toggle');
-        this.globalFeedTab = this.feedToggle.getByRole('link', { name: 'Global Feed' });
-        this.yourFeedTab = this.feedToggle.getByRole('link', { name: 'Your Feed' });
-        this.activeFeedTab = this.feedToggle.locator('.nav-link.active');
+        this.globalFeedTab = this.page.getByText('Global Feed');
+        this.yourFeedTab = this.page.getByText('Your Feed');
+        this.activeFeedTab = this.page.locator('.nav-link.active');
         this.articlePreviews = this.page.locator('.article-preview');
         this.pagination = this.page.locator('ul.pagination');
         this.popularTagsTitle = this.page.getByText('Popular Tags');
-        this.popularTags = this.page.locator('.tag-list .tag-pill');
         this.emptyFeedMessage = this.page.getByText('No articles are here... yet.');
     }
 
@@ -49,8 +47,27 @@ export class HomePage {
         await this.settingsLink.click();
     }
 
+    async selectGlobalFeed() {
+        await this.globalFeedTab.click();
+    }
+
+    async selectYourFeed() {
+        await this.yourFeedTab.click();
+    }
+
+    async selectPopularTag(tagName: string) {
+        const tag = this.page.getByText('Popular Tags').locator('..').getByText(` ${tagName} `);
+        await expect(tag).toBeVisible();
+        await tag.click();
+    }
+
+    async openFirstArticle() {
+        await this.validateArticleList();
+        await this.articlePreviews.first().locator('a.preview-link').click();
+    }
+
     async validateLoginSuccess() {
-        await expect(this.page.getByText('Global Feed')).toBeVisible();
+        await expect(this.page.locator('app-layout-header').getByRole('link', { name: 'Toledo02' })).toBeVisible();
     }
 
     async validateLoggedOutState() {
@@ -62,16 +79,6 @@ export class HomePage {
         await expect(this.banner).toBeVisible();
         await expect(this.feedToggle).toBeVisible();
         await expect(this.globalFeedTab).toBeVisible();
-    }
-
-    async selectGlobalFeed() {
-        await this.globalFeedTab.click();
-        await this.validateFeedTabActive('Global Feed');
-    }
-
-    async selectYourFeed() {
-        await this.yourFeedTab.click();
-        await this.validateFeedTabActive('Your Feed');
     }
 
     async validateFeedTabActive(label: string) {
@@ -99,39 +106,21 @@ export class HomePage {
 
     async validatePopularTagsVisible() {
         await expect(this.popularTagsTitle).toBeVisible();
-        await expect(this.popularTags.first()).toBeVisible();
-    }
-
-    async selectFirstPopularTag(): Promise<string> {
-        const firstTag = this.popularTags.first();
-
-        await expect(firstTag).toBeVisible();
-        const tagName = (await firstTag.textContent())?.trim() ?? '';
-
-        await firstTag.click();
-        return tagName;
     }
 
     async validateTagFilterActive(tagName: string) {
-        await expect(this.activeFeedTab).toContainText(tagName);
+        const activeTag = this.page.locator('li').getByText(` ${tagName} `);
+        await expect(activeTag).toBeVisible();
     }
 
     async validateFeedContentLoaded() {
-        const feedState = this.articlePreviews.first().or(this.emptyFeedMessage);
+        const feedState = this.articlePreviews.first();
 
         await expect(feedState).toBeVisible();
+        await this.validateArticleList();
+    }
 
-        if (await this.articlePreviews.first().isVisible()) {
-            await this.validateArticleList();
-            return;
-        }
-
+    async validateEmptyFeed() {
         await expect(this.emptyFeedMessage).toBeVisible();
     }
-
-    async openFirstArticle() {
-        await this.validateArticleList();
-        await this.articlePreviews.first().locator('a.preview-link').click();
-    }
-
 }

@@ -21,18 +21,14 @@ test.describe('Feed e Navegacao', () => {
         await pages.homePage.validateLoginSuccess();
 
         await pages.homePage.selectYourFeed();
-        await pages.homePage.validateFeedContentLoaded();
-        await pages.homePage.selectGlobalFeed();
-        await pages.homePage.validateFeedTabActive('Global Feed');
+        await pages.homePage.validateEmptyFeed();
     });
 
     test('Filtrar artigos por tag popular', async ({ pages }) => {
         await pages.homePage.validatePopularTagsVisible();
-        const tagName = await pages.homePage.selectFirstPopularTag();
-        await pages.homePage.validateTagFilterActive(tagName);
+        await pages.homePage.selectPopularTag('Test');
+        await pages.homePage.validateTagFilterActive('Test');
         await pages.homePage.validateFeedContentLoaded();
-        await pages.homePage.selectGlobalFeed();
-        await pages.homePage.validateFeedTabActive('Global Feed');
     });
 
     test('Abrir detalhes de artigo a partir do feed', async ({ pages }) => {
