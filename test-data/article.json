@@ -1,0 +1,12 @@
+{
+  "articleBase": {
+    "title": "QA Artigo",
+    "about": "Automacao do artigo",
+    "body": "Conteudo inicial do artigo",
+    "tags": ["qa", "playwright"]
+  },
+  "articleUpdate": {
+    "title": "QA Artigo Atualizado",
+    "body": "Conteudo atualizado do artigo"
+  }
+}

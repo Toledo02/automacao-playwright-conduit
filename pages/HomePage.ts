@@ -4,6 +4,7 @@ export class HomePage {
     readonly page: Page;
     readonly signInButton: Locator;
     readonly signUpButton: Locator;
+    readonly newArticleLink: Locator;
     readonly settingsLink: Locator;
     readonly banner: Locator;
     readonly feedToggle: Locator;
@@ -19,6 +20,7 @@ export class HomePage {
         this.page = page;
         this.signInButton = this.page.getByRole('link', { name: 'Sign in' });
         this.signUpButton = this.page.getByRole('link', { name: 'Sign up' });
+        this.newArticleLink = this.page.getByRole('link', { name: 'New Article' });
         this.settingsLink = this.page.getByRole('link', { name: 'Settings' });
         this.banner = this.page.locator('.banner');
         this.feedToggle = this.page.locator('div.feed-toggle');
@@ -41,6 +43,14 @@ export class HomePage {
 
     async clickSignUp() {
         await this.signUpButton.click();
+    }
+
+    async clickNewArticle() {
+        await this.newArticleLink.click();
+    }
+
+    async clickProfile(username: string) {
+        await this.page.getByRole('link', { name: username }).click();
     }
 
     async clickSettings() {
@@ -66,8 +76,8 @@ export class HomePage {
         await this.articlePreviews.first().locator('a.preview-link').click();
     }
 
-    async validateLoginSuccess() {
-        await expect(this.page.locator('app-layout-header').getByRole('link', { name: 'Toledo02' })).toBeVisible();
+    async validateLoginSuccess(username = 'Toledo02') {
+        await expect(this.page.locator('app-layout-header').getByRole('link', { name: username })).toBeVisible();
     }
 
     async validateLoggedOutState() {
@@ -122,5 +132,38 @@ export class HomePage {
 
     async validateEmptyFeed() {
         await expect(this.emptyFeedMessage).toBeVisible();
+    }
+
+    private firstFavoriteButton(): Locator {
+        return this.articlePreviews.first().locator('button.btn.btn-sm');
+    }
+
+    async getFirstFavoriteCount(): Promise<number> {
+        const text = await this.firstFavoriteButton().innerText();
+        const match = text.match(/\d+/);
+
+        return match ? Number.parseInt(match[0], 10) : 0;
+    }
+
+    async isFirstFavoriteActive(): Promise<boolean> {
+        const className = await this.firstFavoriteButton().getAttribute('class');
+
+        return className ? className.includes('btn-primary') : false;
+    }
+
+    async toggleFirstFavorite() {
+        await this.firstFavoriteButton().click();
+    }
+
+    async validateFirstFavoriteActive() {
+        await expect(this.firstFavoriteButton()).toHaveClass(/btn-primary/);
+    }
+
+    async validateFirstFavoriteInactive() {
+        await expect(this.firstFavoriteButton()).toHaveClass(/btn-outline-primary/);
+    }
+
+    async validateFirstFavoriteCount(expected: number) {
+        await expect(this.firstFavoriteButton()).toHaveText(new RegExp(`\\b${expected}\\b`));
     }
 }

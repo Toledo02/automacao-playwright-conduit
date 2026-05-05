@@ -1,0 +1,15 @@
+{
+  "userBase": {
+    "username": "qa.settings",
+    "emailDomain": "example.com",
+    "password": "QaSettings#2026"
+  },
+  "profileUpdate": {
+    "username": "qa.settings.updated",
+    "bio": "Bio atualizada por automacao",
+    "imageUrl": "https://i.pravatar.cc/150?img=47"
+  },
+  "passwordUpdate": {
+    "newPassword": "QaSettings#2026-2"
+  }
+}
