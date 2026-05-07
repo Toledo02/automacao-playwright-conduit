@@ -1,7 +1,7 @@
-import { test } from '../fixtures/page-object';
-import { buildArticleData, buildUpdatedData, createArticleAPI } from '../utils/Article';
-import { loginValido } from '../test-data/login.json';
-import { articleBase, articleUpdate } from '../test-data/article.json';
+import { test } from '../../fixtures/page-object';
+import { buildArticleData, buildUpdatedData, createArticleAPI } from '../../utils/Article';
+import { loginValido } from '../../test-data/login.json';
+import { articleBase, articleUpdate } from '../../test-data/article.json';
 
 test.describe('Artigos CRUD', () => {
     test('Criar novo artigo com dados validos', async ({ pages }) => {

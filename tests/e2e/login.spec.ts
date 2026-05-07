@@ -1,5 +1,5 @@
-import { test } from '../fixtures/page-object';
-import { loginInvalido, loginValido } from '../test-data/login.json';
+import { test } from '../../fixtures/page-object';
+import { loginInvalido, loginValido } from '../../test-data/login.json';
 
 test.beforeEach(async ({ pages }) => {
     await pages.homePage.navigate();
@@ -29,7 +29,6 @@ test.describe('Logout', () => {
         await pages.loginPage.fillPassword(loginValido.password);
         await pages.loginPage.clickSignIn();
         await pages.homePage.validateLoginSuccess();
-
         await pages.homePage.clickSettings();
         await pages.settingsPage.validateSettingsLoaded();
         await pages.settingsPage.clickLogout();

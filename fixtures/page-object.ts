@@ -4,7 +4,6 @@ import { EditorPage } from '../pages/EditorPage';
 import { HomePage } from '../pages/HomePage';
 import { LoginPage } from '../pages/LoginPage';
 import { ProfilePage } from '../pages/ProfilePage';
-import { RegisterPage } from '../pages/RegisterPage';
 import { SettingsPage } from '../pages/SettingsPage';
 
 type Pages = {
@@ -13,7 +12,6 @@ type Pages = {
 	homePage: HomePage;
 	loginPage: LoginPage;
 	profilePage: ProfilePage;
-	registerPage: RegisterPage;
 	settingsPage: SettingsPage;
 };
 
@@ -29,7 +27,6 @@ const test = base.extend<PageObjects>({
 			homePage: new HomePage(page),
 			loginPage: new LoginPage(page),
 			profilePage: new ProfilePage(page),
-			registerPage: new RegisterPage(page),
 			settingsPage: new SettingsPage(page),
 		});
 	},

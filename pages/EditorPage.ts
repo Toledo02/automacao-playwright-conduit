@@ -23,15 +23,6 @@ export class EditorPage {
         await this.page.goto('/editor');
     }
 
-    async validateEditorLoaded() {
-        await expect(this.titleInput).toBeVisible();
-        await expect(this.publishButton).toBeVisible();
-    }
-
-    async validateEditorPrefilled(expected: string) {
-        await expect(this.titleInput).toHaveValue(expected);
-    }
-
     async fillField(fieldName: string, value: string) {
         const field = this.page.getByRole('textbox', { name: fieldName });
         await field.fill(value);
@@ -46,6 +37,15 @@ export class EditorPage {
 
     async publishArticle() {
         await this.publishButton.click();
+    }
+
+    async validateEditorLoaded() {
+        await expect(this.titleInput).toBeVisible();
+        await expect(this.publishButton).toBeVisible();
+    }
+
+    async validateEditorPrefilled(expected: string) {
+        await expect(this.titleInput).toHaveValue(expected);
     }
 
     async validateRequiredFieldErrors() {

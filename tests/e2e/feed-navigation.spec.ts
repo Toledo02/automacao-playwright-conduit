@@ -1,5 +1,5 @@
-import { test } from '../fixtures/page-object';
-import { loginValido } from '../test-data/login.json';
+import { test } from '../../fixtures/page-object';
+import { loginValido } from '../../test-data/login.json';
 
 test.beforeEach(async ({ pages }) => {
     await pages.homePage.navigate();
@@ -15,11 +15,8 @@ test.describe('Feed e Navegacao', () => {
 
     test('Alternar para Your Feed apos login', async ({ pages }) => {
         await pages.homePage.clickSignIn();
-        await pages.loginPage.fillEmail(loginValido.email);
-        await pages.loginPage.fillPassword(loginValido.password);
-        await pages.loginPage.clickSignIn();
+        await pages.loginPage.login(loginValido.email, loginValido.password);
         await pages.homePage.validateLoginSuccess();
-
         await pages.homePage.selectYourFeed();
         await pages.homePage.validateEmptyFeed();
     });
@@ -34,7 +31,7 @@ test.describe('Feed e Navegacao', () => {
     test('Abrir detalhes de artigo a partir do feed', async ({ pages }) => {
         await pages.homePage.selectGlobalFeed();
         await pages.homePage.openFirstArticle();
-        await pages.articlePage.validateArticleDetails();
-        await pages.articlePage.validateCommentsSection();
+        await pages.articlePage.validateCommentPromptVisible();
+        await pages.articlePage.validateArticleVisible();
     });
 });

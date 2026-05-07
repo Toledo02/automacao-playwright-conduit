@@ -14,7 +14,6 @@ export class HomePage {
     readonly articlePreviews: Locator;
     readonly pagination: Locator;
     readonly popularTagsTitle: Locator;
-    readonly emptyFeedMessage: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -30,7 +29,6 @@ export class HomePage {
         this.articlePreviews = this.page.locator('.article-preview');
         this.pagination = this.page.locator('ul.pagination');
         this.popularTagsTitle = this.page.getByText('Popular Tags');
-        this.emptyFeedMessage = this.page.getByText('No articles are here... yet.');
     }
 
     async navigate() {
@@ -136,40 +134,7 @@ export class HomePage {
     }
 
     async validateEmptyFeed() {
-        await expect(this.emptyFeedMessage).toBeVisible();
-    }
-
-    private firstFavoriteButton(): Locator {
-        return this.articlePreviews.first().locator('button.btn.btn-sm');
-    }
-
-    async getFirstFavoriteCount(): Promise<number> {
-        const text = await this.firstFavoriteButton().innerText();
-        const match = text.match(/\d+/);
-
-        return match ? Number.parseInt(match[0], 10) : 0;
-    }
-
-    async isFirstFavoriteActive(): Promise<boolean> {
-        const className = await this.firstFavoriteButton().getAttribute('class');
-
-        return className ? className.includes('btn-primary') : false;
-    }
-
-    async toggleFirstFavorite() {
-        await this.firstFavoriteButton().click();
-    }
-
-    async validateFirstFavoriteActive() {
-        await expect(this.firstFavoriteButton()).toHaveClass(/btn-primary/);
-    }
-
-    async validateFirstFavoriteInactive() {
-        await expect(this.firstFavoriteButton()).toHaveClass(/btn-outline-primary/);
-    }
-
-    async validateFirstFavoriteCount(expected: number) {
-        await expect(this.firstFavoriteButton()).toHaveText(new RegExp(`\\b${expected}\\b`));
+        await expect(this.page.getByText('No articles are here... yet.')).toBeVisible();
     }
 
     async validateArticlePresent(title: string) {

@@ -26,12 +26,16 @@ export class ArticlePage {
         await expect(this.page.getByText(expectedBody)).toBeVisible();
     }
 
+    async validateArticleVisible() {
+        await expect(this.page.getByRole('heading', { level: 1 })).toBeVisible();
+    }
+
+    async validateCommentPromptVisible() {
+        await expect(this.commentPrompt).toBeVisible();
+    }
+
     async validateOwnerActionsVisible() {
         await expect(this.editArticleLink).toBeVisible();
         await expect(this.deleteArticleButton).toBeVisible();
-    }
-
-    async validateCommentsSection() {
-        await expect(this.commentPrompt).toBeVisible();
     }
 }
