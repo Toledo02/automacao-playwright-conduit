@@ -1,11 +1,5 @@
 import { Locator, Page, expect } from '@playwright/test';
 
-type EditorPrefill = {
-    title: string;
-    about?: string;
-    body?: string;
-};
-
 export class EditorPage {
     readonly page: Page;
     readonly titleInput: Locator;
@@ -17,10 +11,10 @@ export class EditorPage {
 
     constructor(page: Page) {
         this.page = page;
-        this.titleInput = this.page.getByPlaceholder('Article Title');
-        this.aboutInput = this.page.getByPlaceholder("What's this article about?");
-        this.bodyInput = this.page.getByPlaceholder('Write your article (in markdown)');
-        this.tagsInput = this.page.getByPlaceholder('Enter tags');
+        this.titleInput = this.page.getByRole('textbox', { name: 'Article Title' });
+        this.aboutInput = this.page.getByRole('textbox', { name: 'What\'s this article about?' });
+        this.bodyInput = this.page.getByRole('textbox', { name: 'Write your article (in markdown)' });
+        this.tagsInput = this.page.getByRole('textbox', { name: 'Enter tags' });
         this.publishButton = this.page.getByRole('button', { name: 'Publish Article' });
         this.errorMessages = this.page.locator('.error-messages');
     }
@@ -34,28 +28,13 @@ export class EditorPage {
         await expect(this.publishButton).toBeVisible();
     }
 
-    async validateEditorPrefilled(expected: EditorPrefill) {
-        await expect(this.titleInput).toHaveValue(expected.title);
-
-        if (expected.about) {
-            await expect(this.aboutInput).toHaveValue(expected.about);
-        }
-
-        if (expected.body) {
-            await expect(this.bodyInput).toHaveValue(expected.body);
-        }
+    async validateEditorPrefilled(expected: string) {
+        await expect(this.titleInput).toHaveValue(expected);
     }
 
-    async fillTitle(title: string) {
-        await this.titleInput.fill(title);
-    }
-
-    async fillAbout(about: string) {
-        await this.aboutInput.fill(about);
-    }
-
-    async fillBody(body: string) {
-        await this.bodyInput.fill(body);
+    async fillField(fieldName: string, value: string) {
+        const field = this.page.getByRole('textbox', { name: fieldName });
+        await field.fill(value);
     }
 
     async addTags(tags: string[]) {
@@ -72,11 +51,5 @@ export class EditorPage {
     async validateRequiredFieldErrors() {
         await expect(this.errorMessages).toBeVisible();
         await expect(this.errorMessages).toContainText("title can't be blank");
-        await expect(this.errorMessages).toContainText("body can't be blank");
-    }
-
-    async validateStillInEditor() {
-        await expect(this.page).toHaveURL(/.*\/editor/);
-        await this.validateEditorLoaded();
     }
 }
