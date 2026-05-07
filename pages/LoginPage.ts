@@ -27,6 +27,12 @@ export class LoginPage {
         await this.signInButton.click();
     }
 
+    async login(email: string, password: string) {
+        await this.fillEmail(email);
+        await this.fillPassword(password);
+        await this.clickSignIn();
+    }
+
     async validateInvalidCredentials() {
         await expect(this.errorMessages).toContainText('email or password is invalid');
     }

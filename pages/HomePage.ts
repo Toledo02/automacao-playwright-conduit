@@ -76,6 +76,11 @@ export class HomePage {
         await this.articlePreviews.first().locator('a.preview-link').click();
     }
 
+    async clickArticle(title: string) {
+        const article = this.page.getByRole('heading', { name: title }).locator('..');
+        await article.click();
+    }
+
     async validateLoginSuccess(username = 'Toledo02') {
         await expect(this.page.locator('app-layout-header').getByRole('link', { name: username })).toBeVisible();
     }
@@ -165,5 +170,9 @@ export class HomePage {
 
     async validateFirstFavoriteCount(expected: number) {
         await expect(this.firstFavoriteButton()).toHaveText(new RegExp(`\\b${expected}\\b`));
+    }
+
+    async validateArticlePresent(title: string) {
+        await expect(this.page.getByRole('heading', { name: title })).toBeVisible();
     }
 }

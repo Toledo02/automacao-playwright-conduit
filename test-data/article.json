@@ -1,4 +1,5 @@
 {
+  "username": "Toledo02",
   "articleBase": {
     "title": "QA Artigo",
     "about": "Automacao do artigo",
@@ -7,6 +8,7 @@
   },
   "articleUpdate": {
     "title": "QA Artigo Atualizado",
+    "about": "Automacao do artigo atualizado",
     "body": "Conteudo atualizado do artigo"
   }
 }
