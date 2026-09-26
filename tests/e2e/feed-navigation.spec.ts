@@ -6,14 +6,14 @@ test.beforeEach(async ({ pages }) => {
 });
 
 test.describe('Feed e Navegacao', () => {
-    test('Visualizar Global Feed na Home', async ({ pages }) => {
+    test('CT004 - Visualizar Global Feed na Home', async ({ pages }) => {
         await pages.homePage.validateHomeLoaded();
         await pages.homePage.selectGlobalFeed();
         await pages.homePage.validateArticleList();
         await pages.homePage.validatePaginationOrList();
     });
 
-    test('Alternar para Your Feed apos login', async ({ pages }) => {
+    test('CT005 - Alternar para Your Feed apos login', async ({ pages }) => {
         await pages.homePage.clickSignIn();
         await pages.loginPage.login(loginValido.email, loginValido.password);
         await pages.homePage.validateLoginSuccess();
@@ -21,14 +21,14 @@ test.describe('Feed e Navegacao', () => {
         await pages.homePage.validateEmptyFeed();
     });
 
-    test('Filtrar artigos por tag popular', async ({ pages }) => {
+    test('CT006 - Filtrar artigos por tag popular', async ({ pages }) => {
         await pages.homePage.validatePopularTagsVisible();
         await pages.homePage.selectPopularTag('Test');
         await pages.homePage.validateTagFilterActive('Test');
         await pages.homePage.validateFeedContentLoaded();
     });
 
-    test('Abrir detalhes de artigo a partir do feed', async ({ pages }) => {
+    test('CT007 - Abrir detalhes de artigo a partir do feed', async ({ pages }) => {
         await pages.homePage.selectGlobalFeed();
         await pages.homePage.openFirstArticle();
         await pages.articlePage.validateCommentPromptVisible();

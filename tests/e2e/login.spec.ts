@@ -7,14 +7,14 @@ test.beforeEach(async ({ pages }) => {
 });
 
 test.describe('Autenticacao', () => {
-    test('Login com credenciais validas', async ({ pages }) => {
+    test('CT001 - Login com credenciais validas', async ({ pages }) => {
         await pages.loginPage.fillEmail(loginValido.email);
         await pages.loginPage.fillPassword(loginValido.password);
         await pages.loginPage.clickSignIn();
         await pages.homePage.validateLoginSuccess();
     });
 
-    test('Login com credenciais invalidas', async ({ pages }) => {
+    test('CT002 - Login com credenciais invalidas', async ({ pages }) => {
         await pages.loginPage.fillEmail(loginInvalido.email);
         await pages.loginPage.fillPassword(loginInvalido.password);
         await pages.loginPage.clickSignIn();
@@ -24,7 +24,7 @@ test.describe('Autenticacao', () => {
 });
 
 test.describe('Logout', () => {
-    test('Logout de usuario autenticado', async ({ pages }) => {
+    test('CT003/CT016 - Logout de usuario autenticado', async ({ pages }) => {
         await pages.loginPage.fillEmail(loginValido.email);
         await pages.loginPage.fillPassword(loginValido.password);
         await pages.loginPage.clickSignIn();

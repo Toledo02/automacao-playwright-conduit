@@ -1,8 +1,8 @@
 {
-  "name": "playwright",
+  "name": "playwright-e2e-tests",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "description": "Testes E2E com Playwright (CRUD de artigos, Page Objects)",
   "scripts": {
     "test": "playwright test",
     "test:list": "playwright test --list",
@@ -12,11 +12,11 @@
     "test:chromium": "playwright test --project=chromium",
     "test:firefox": "playwright test --project=firefox",
     "test:webkit": "playwright test --project=webkit",
-    "test:smoke": "playwright test --project=chromium --grep \"CT002|CT009|CT017\" --reporter=line",
+    "test:smoke": "playwright test --project=chromium --grep \"CT001|CT008|CT016\" --reporter=line",
     "test:report": "playwright show-report"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["playwright", "e2e", "testes", "automação"],
+  "author": "Gustavo Toledo",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {

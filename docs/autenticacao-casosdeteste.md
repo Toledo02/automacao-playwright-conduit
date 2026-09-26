@@ -1,31 +1,4 @@
-## **CT001: Cadastro com dados validos**
-
-#### **Objetivo**
-Validar que um novo usuario consegue criar conta com dados validos e acessa area autenticada.
-
-#### **Pre-condicoes**
-- Aplicacao Conduit acessivel
-- Usuario ainda nao cadastrado para o email utilizado no teste
-- Navegador iniciado sem sessao autenticada
-
-#### **Passos**
-| Id  | Acao                                         | Resultado Esperado                                                |
-| --- | -------------------------------------------- | ----------------------------------------------------------------- |
-| 1   | Acessar a pagina de cadastro (/register)     | Formulario de cadastro exibido com campos obrigatorios            |
-| 2   | Preencher username, email e password validos | Campos aceitam os dados sem erro visual                           |
-| 3   | Clicar em Sign up                            | Requisicao de cadastro enviada com sucesso                        |
-| 4   | Validar a area logada                        | Usuario redirecionado para Home com opcoes de usuario autenticado |
-
-#### **Resultados**
-| Resultado Obtido                                           | Status  |
-| ---------------------------------------------------------- | ------- |
-| Formulario de cadastro foi exibido com campos obrigatorios | Sucesso |
-| Campos aceitaram username, email e password validos        | Sucesso |
-| Cadastro foi concluido com sucesso                         | Sucesso |
-| Usuario foi redirecionado para Home autenticada            | Sucesso |
-
----
-## **CT002: Login com credenciais validas**
+## **CT001: Login com credenciais validas**
 
 #### **Objetivo**
 Validar que um usuario existente consegue autenticar com email e senha validos.
@@ -52,7 +25,7 @@ Validar que um usuario existente consegue autenticar com email e senha validos.
 | Usuario ficou autenticado com opcoes de sessao ativa | Sucesso |
 
 ---
-## **CT003: Login com credenciais invalidas**
+## **CT002: Login com credenciais invalidas**
 
 #### **Objetivo**
 Validar que o sistema bloqueia autenticacao quando a senha informada e invalida.
@@ -79,7 +52,7 @@ Validar que o sistema bloqueia autenticacao quando a senha informada e invalida.
 | Mensagem de falha foi exibida e sessao nao foi criada | Sucesso |
 
 ---
-## **CT004: Logout de usuario autenticado**
+## **CT003: Logout de usuario autenticado**
 
 #### **Objetivo**
 Validar que um usuario autenticado consegue encerrar sessao pelo fluxo de logout.

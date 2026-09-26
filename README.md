@@ -2,18 +2,18 @@
 
 Projeto de portfólio de automação de testes E2E e de API para a aplicação **[Conduit](https://conduit.bondaracademy.com)** (clone do Medium, baseado no projeto RealWorld), utilizando **Playwright + TypeScript** e o padrão **Page Object Model (POM)**.
 
-O repositório contém tanto a **documentação formal dos casos de teste** (CT001–CT017) quanto a **automação** desses cenários.
+O repositório contém tanto a **documentação formal dos casos de teste** (CT001–CT016) quanto a **automação** desses cenários.
 
 ## O que é testado
 
 | Módulo                   | Casos documentados | Automação                                                   |
 | ------------------------ | ------------------ | ----------------------------------------------------------- |
-| Autenticação             | CT001 – CT004      | Login válido, login inválido e logout                       |
-| Feed e navegação         | CT005 – CT008      | Global Feed, Your Feed, filtro por tag e abertura de artigo |
-| CRUD de artigo           | CT009 – CT012      | Criar, editar, excluir e validar campos obrigatórios        |
-| Favoritar / desfavoritar | CT013 – CT014      | Apenas documentado                                          |
-| Settings e logout        | CT015 – CT017      | Apenas documentado (logout coberto em `login.spec.ts`)      |
-| API                      | –                  | Login e criação de artigo via API                           |
+| Autenticação             | CT001 – CT003      | Login válido, login inválido e logout                       |
+| Feed e navegação         | CT004 – CT007      | Global Feed, Your Feed, filtro por tag e abertura de artigo |
+| CRUD de artigo           | CT008 – CT011      | Criar, editar, excluir e validar campos obrigatórios        |
+| Favoritar / desfavoritar | CT012 – CT013      | Apenas documentado                                          |
+| Settings e logout        | CT014 – CT016      | Apenas documentado (logout coberto em `login.spec.ts`)      |
+| API                      | –                  | Login, criação e exclusão de artigo via API                 |
 
 A matriz de cobertura completa está em [docs/matriz-cobertura-casosdeteste.md](docs/matriz-cobertura-casosdeteste.md).
 
@@ -34,7 +34,7 @@ A matriz de cobertura completa está em [docs/matriz-cobertura-casosdeteste.md](
 ├── pages/                 # Page Objects (Home, Login, Editor, Article, Profile, Settings)
 ├── test-data/             # Massa de dados fixa em JSON (credenciais e artigos)
 ├── tests/
-│   ├── api/               # Testes de API (login e criação de artigo)
+│   ├── api/               # Testes de API (login, criação e exclusão de artigo)
 │   └── e2e/               # Testes de interface (login, feed, CRUD de artigo)
 ├── utils/                 # Helpers: autenticação via API e geração/criação de artigos
 ├── playwright.config.ts   # Configuração do Playwright
@@ -59,6 +59,8 @@ A matriz de cobertura completa está em [docs/matriz-cobertura-casosdeteste.md](
 
 - **Dados híbridos:** credenciais e conteúdo base ficam em JSON (`test-data/`); títulos de artigos recebem um sufixo único (timestamp + aleatório) via `buildArticleData`, evitando conflito entre execuções paralelas.
 - **Setup via API:** os testes de edição e exclusão criam o artigo diretamente pela API (`createArticleAPI`), deixando o teste de UI focado apenas no comportamento sob teste e tornando-o mais rápido e estável.
+- **Limpeza via API:** os artigos criados nos testes de CRUD são excluídos pela API em um `afterEach` (`deleteArticleAPI`), mesmo quando o teste falha, evitando acúmulo de dados na conta de teste.
+- **Rastreabilidade:** o título de cada teste E2E começa com o ID do caso documentado (ex.: `CT008 - Criar novo artigo com dados validos`), o que permite rodar um caso com `--grep "CT008"`.
 
 ## Pré-requisitos
 

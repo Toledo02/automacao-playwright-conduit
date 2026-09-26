@@ -1,4 +1,4 @@
-## **CT009: Criar novo artigo com dados validos**
+## **CT008: Criar novo artigo com dados validos**
 
 #### **Objetivo**
 Validar que usuario autenticado consegue publicar um novo artigo com sucesso.
@@ -26,7 +26,7 @@ Validar que usuario autenticado consegue publicar um novo artigo com sucesso.
 | Acoes de dono do artigo foram exibidas              | Sucesso |
 
 ---
-## **CT010: Editar artigo proprio**
+## **CT009: Editar artigo proprio**
 
 #### **Objetivo**
 Validar que o autor consegue editar um artigo publicado anteriormente.
@@ -54,7 +54,7 @@ Validar que o autor consegue editar um artigo publicado anteriormente.
 | Conteudo atualizado foi exibido na pagina final | Sucesso |
 
 ---
-## **CT011: Excluir artigo proprio**
+## **CT010: Excluir artigo proprio**
 
 #### **Objetivo**
 Validar que o autor consegue excluir um artigo proprio e removelo da listagem.
@@ -80,7 +80,7 @@ Validar que o autor consegue excluir um artigo proprio e removelo da listagem.
 | Artigo nao apareceu mais no perfil do autor | Sucesso |
 
 ---
-## **CT012: Validar campos obrigatorios ao publicar artigo**
+## **CT011: Validar campos obrigatorios ao publicar artigo**
 
 #### **Objetivo**
 Validar mensagens de erro quando usuario tenta publicar artigo sem preencher campos obrigatorios.

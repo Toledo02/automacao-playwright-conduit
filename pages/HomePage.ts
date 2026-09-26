@@ -79,8 +79,8 @@ export class HomePage {
         await article.click();
     }
 
-    async validateLoginSuccess(username = 'Toledo02') {
-        await expect(this.page.locator('app-layout-header').getByRole('link', { name: username })).toBeVisible();
+    async validateLoginSuccess() {
+        await expect(this.page.locator('app-layout-header').getByRole('link', { name: 'Toledo02' })).toBeVisible();
     }
 
     async validateLoggedOutState() {

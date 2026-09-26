@@ -1,4 +1,4 @@
-## **CT013: Favoritar artigo no feed**
+## **CT012: Favoritar artigo no feed**
 
 #### **Objetivo**
 Validar que usuario autenticado consegue favoritar artigo pelo feed e atualizar contador.
@@ -24,7 +24,7 @@ Validar que usuario autenticado consegue favoritar artigo pelo feed e atualizar 
 | Estado visual e contador foram atualizados | Sucesso |
 
 ---
-## **CT014: Desfavoritar artigo previamente favoritado**
+## **CT013: Desfavoritar artigo previamente favoritado**
 
 #### **Objetivo**
 Validar que usuario autenticado consegue remover favorito de artigo e decrementar contador.

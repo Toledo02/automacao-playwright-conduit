@@ -42,7 +42,6 @@ export default defineConfig({
     navigationTimeout: 30 * 1000,
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
-    outputDir: 'test-results/artifacts',
 
     /* Collect trace for failed tests to speed up debugging. */
     trace: 'retain-on-failure',

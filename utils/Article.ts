@@ -1,4 +1,4 @@
-import { APIRequestContext } from '@playwright/test';
+import { APIRequestContext, expect } from '@playwright/test';
 import { login } from './Auth';
 import { loginValido } from '../test-data/login.json';
 
@@ -30,10 +30,22 @@ export function buildUpdatedData(articleUpdate: any) {
     };
 };
 
-export async function createArticleAPI(request: APIRequestContext, article: ArticleData) {
-    const url = 'https://conduit-api.bondaracademy.com/api/articles/';
+const articlesUrl = 'https://conduit-api.bondaracademy.com/api/articles';
+
+async function authHeaders(request: APIRequestContext) {
     const token = await login(request, loginValido.email, loginValido.password);
 
+    return {
+        'content-type': 'application/json',
+        'Authorization': `Token ${token}`,
+    };
+}
+
+export function getSlugFromUrl(url: string) {
+    return url.split('/article/')[1];
+}
+
+export async function createArticleAPI(request: APIRequestContext, article: ArticleData) {
     const payload = {
         article: {
             title: article.title,
@@ -43,13 +55,17 @@ export async function createArticleAPI(request: APIRequestContext, article: Arti
         },
     };
 
-    const response = await request.post(url, {
-        headers: {
-            'content-type': 'application/json',
-            'Authorization': `Token ${token}`,
-        },
+    const response = await request.post(`${articlesUrl}/`, {
+        headers: await authHeaders(request),
         data: payload,
     });
+    await expect(response, 'Falha ao criar artigo via API').toBeOK();
 
     return await response.json();
+}
+
+export async function deleteArticleAPI(request: APIRequestContext, slug: string) {
+    return await request.delete(`${articlesUrl}/${slug}`, {
+        headers: await authHeaders(request),
+    });
 }

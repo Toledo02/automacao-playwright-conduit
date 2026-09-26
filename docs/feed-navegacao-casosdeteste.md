@@ -1,4 +1,4 @@
-## **CT005: Visualizar Global Feed na Home**
+## **CT004: Visualizar Global Feed na Home**
 
 #### **Objetivo**
 Validar que a Home exibe o Global Feed com lista de artigos para usuario nao autenticado.
@@ -24,7 +24,7 @@ Validar que a Home exibe o Global Feed com lista de artigos para usuario nao aut
 | Navegacao da listagem esteve disponivel       | Sucesso |
 
 ---
-## **CT006: Alternar para Your Feed apos login**
+## **CT005: Alternar para Your Feed apos login**
 
 #### **Objetivo**
 Validar que usuario autenticado consegue alternar da aba Global Feed para Your Feed.
@@ -50,7 +50,7 @@ Validar que usuario autenticado consegue alternar da aba Global Feed para Your F
 | Alternancia entre abas funcionou sem erro | Sucesso |
 
 ---
-## **CT007: Filtrar artigos por tag popular**
+## **CT006: Filtrar artigos por tag popular**
 
 #### **Objetivo**
 Validar que ao selecionar uma tag popular o feed e filtrado para artigos relacionados.
@@ -76,7 +76,7 @@ Validar que ao selecionar uma tag popular o feed e filtrado para artigos relacio
 | Feed geral foi restaurado apos remover filtro | Sucesso |
 
 ---
-## **CT008: Abrir detalhes de artigo a partir do feed**
+## **CT007: Abrir detalhes de artigo a partir do feed**
 
 #### **Objetivo**
 Validar que ao selecionar um artigo no feed o usuario acessa a pagina de detalhes corretamente.

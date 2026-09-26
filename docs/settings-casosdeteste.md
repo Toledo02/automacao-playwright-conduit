@@ -1,4 +1,4 @@
-## **CT015: Atualizar informacoes de perfil em Settings**
+## **CT014: Atualizar informacoes de perfil em Settings**
 
 #### **Objetivo**
 Validar que usuario autenticado consegue alterar dados de perfil pela tela de configuracoes.
@@ -24,7 +24,7 @@ Validar que usuario autenticado consegue alterar dados de perfil pela tela de co
 | Perfil exibiu dados atualizados          | Sucesso |
 
 ---
-## **CT016: Atualizar senha em Settings**
+## **CT015: Atualizar senha em Settings**
 
 #### **Objetivo**
 Validar que usuario autenticado consegue atualizar a senha e utilizar a nova credencial.
@@ -52,7 +52,7 @@ Validar que usuario autenticado consegue atualizar a senha e utilizar a nova cre
 | Login com nova senha foi concluido      | Sucesso |
 
 ---
-## **CT017: Logout pela tela de Settings**
+## **CT016: Logout pela tela de Settings**
 
 #### **Objetivo**
 Validar que o botao de logout em Settings encerra sessao e retorna o usuario ao estado anonimo.
