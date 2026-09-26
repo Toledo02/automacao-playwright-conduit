@@ -1,5 +1,7 @@
 # Automação de Testes – Conduit com Playwright
 
+[![Playwright Tests](https://github.com/Toledo02/automacao-playwright-conduit/actions/workflows/playwright.yml/badge.svg)](https://github.com/Toledo02/automacao-playwright-conduit/actions/workflows/playwright.yml)
+
 Projeto de portfólio de automação de testes E2E e de API para a aplicação **[Conduit](https://conduit.bondaracademy.com)** (clone do Medium, baseado no projeto RealWorld), utilizando **Playwright + TypeScript** e o padrão **Page Object Model (POM)**.
 
 O repositório contém tanto a **documentação formal dos casos de teste** (CT001–CT016) quanto a **automação** desses cenários.
@@ -131,6 +133,14 @@ Para inspecionar um trace de falha:
 ```bash
 npx playwright show-trace test-results/<nome-do-teste>/trace.zip
 ```
+
+## Integração contínua
+
+O workflow [.github/workflows/playwright.yml](.github/workflows/playwright.yml) executa a suíte no GitHub Actions:
+
+- **Gatilhos:** push e pull request para a `master`, além de execução manual pela aba *Actions* (`workflow_dispatch`)
+- **Navegadores:** um job por navegador (Chromium, Firefox e WebKit) rodando em paralelo
+- **Artefatos:** relatório HTML de cada navegador e, em caso de falha, screenshots, vídeos e traces (`test-results/`), mantidos por 14 dias
 
 ## Documentação dos casos de teste
 
